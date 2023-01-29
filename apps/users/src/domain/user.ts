@@ -5,7 +5,6 @@ export interface IUserSchema {
   id: number;
   name: string;
   email: string;
-  bio: string;
   userMetadata: IUserMetadataSchema
   created_at?: Date;
   updated_at?: Date;
@@ -17,14 +16,12 @@ export class User {
   constructor({
     name,
     email,
-    bio,
     created_at = new Date(),
     updated_at = new Date(),
     id = null,
   }: {
     name: string;
     email: string;
-    bio: string;
     created_at?: Date;
     updated_at?: Date;
     id?: number;
@@ -32,7 +29,6 @@ export class User {
     this._entityRoot = new UserEntity();
     this._entityRoot.name = name;
     this._entityRoot.email = email;
-    this._entityRoot.bio = bio;
     this._entityRoot.created_at = created_at;
     this._entityRoot.updated_at = updated_at;
     this._entityRoot.id = id;

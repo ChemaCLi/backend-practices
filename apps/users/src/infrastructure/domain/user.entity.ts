@@ -24,14 +24,6 @@ export class UserEntity extends BaseEntity implements IUserSchema {
   })
   email: string;
 
-  @Column({
-    name: 'bio',
-    type: 'varchar',
-    nullable: true,
-    length: 1200,
-  })
-  bio: string;
-
   @OneToOne(
     () => UsersMetadataEntity,
     (userMetadata) => userMetadata.user
