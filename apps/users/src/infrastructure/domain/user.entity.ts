@@ -1,6 +1,7 @@
 import { BaseEntity } from '@app/commons/infrastructure/domain/base.entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { IUserSchema } from '../../domain/user';
+import { UsersMetadataEntity } from './users-metadata.entity';
 
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity implements IUserSchema {
@@ -30,4 +31,10 @@ export class UserEntity extends BaseEntity implements IUserSchema {
     length: 1200,
   })
   bio: string;
+
+  @OneToOne(
+    () => UsersMetadataEntity,
+    (userMetadata) => userMetadata.user
+  )
+  userMetadata: UsersMetadataEntity
 }
