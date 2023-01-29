@@ -6,7 +6,7 @@ export interface IUserSchema {
   name: string;
   email: string;
   code?: string | null;
-  userMetadata: IUserMetadataSchema
+  userMetadata?: Partial<IUserMetadataSchema>
   created_at?: Date;
   updated_at?: Date;
 }
@@ -21,6 +21,7 @@ export class User {
     created_at = new Date(),
     updated_at = new Date(),
     id = null,
+    userMetadata
   }: {
     name: string;
     email: string;
@@ -28,6 +29,7 @@ export class User {
     updated_at?: Date;
     code?: string | null;
     id?: number;
+    userMetadata?: Partial<IUserMetadataSchema>;
   }) {
     this._entityRoot = new UserEntity();
     this._entityRoot.name = name;
@@ -36,6 +38,7 @@ export class User {
     this._entityRoot.created_at = created_at;
     this._entityRoot.updated_at = updated_at;
     this._entityRoot.id = id;
+    this._entityRoot.userMetadata = userMetadata;
   }
 
   get email(): string {
