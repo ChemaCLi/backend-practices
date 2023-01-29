@@ -1,10 +1,12 @@
 import { UserEntity } from '../infrastructure/domain/user.entity';
+import { IUserMetadataSchema } from './user-metadata';
 
 export interface IUserSchema {
   id: number;
   name: string;
   email: string;
   bio: string;
+  userMetadata: IUserMetadataSchema
   created_at?: Date;
   updated_at?: Date;
 }
