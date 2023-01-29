@@ -5,6 +5,7 @@ export interface IUserSchema {
   id: number;
   name: string;
   email: string;
+  code?: string | null;
   userMetadata: IUserMetadataSchema
   created_at?: Date;
   updated_at?: Date;
@@ -16,6 +17,7 @@ export class User {
   constructor({
     name,
     email,
+    code = null,
     created_at = new Date(),
     updated_at = new Date(),
     id = null,
@@ -24,11 +26,13 @@ export class User {
     email: string;
     created_at?: Date;
     updated_at?: Date;
+    code?: string | null;
     id?: number;
   }) {
     this._entityRoot = new UserEntity();
     this._entityRoot.name = name;
     this._entityRoot.email = email;
+    this._entityRoot.code = code;
     this._entityRoot.created_at = created_at;
     this._entityRoot.updated_at = updated_at;
     this._entityRoot.id = id;
