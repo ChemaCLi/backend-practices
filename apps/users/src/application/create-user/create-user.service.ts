@@ -10,13 +10,17 @@ export class CreateUserService
   implements IApplicationService<CreateUserCommand>
 {
   constructor(
-    @Inject(USER_REPOSITORY) private userRespository: UserRepository,
+    @Inject(USER_REPOSITORY) private userRepository: UserRepository,
   ) {}
 
   async process({ name, email, bio }: CreateUserCommand): Promise<IUserSchema> {
-    const user = new User({ name, email, bio });
+    const user = new User({
+      name,
+      email,
+      userMetadata: { bio }
+    });
 
-    await this.userRespository.persist(user);
+    await this.userRepository.persist(user);
 
     return user.entityRoot();
   }
