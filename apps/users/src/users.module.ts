@@ -12,11 +12,12 @@ import { UserController } from './infrastructure/controllers/user.controller';
 import { UsersController } from './infrastructure/controllers/users.controller';
 import { UserEntity } from './infrastructure/domain/user.entity';
 import { UserRepository } from './infrastructure/repositories/user.repository';
+import { UsersMetadataEntity } from './infrastructure/domain/users-metadata.entity';
 
 @Module({
   imports: [
     ConfigModule.forRoot(options),
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, UsersMetadataEntity]),
     DatabaseModule,
   ],
   controllers: [UserController, UsersController],
