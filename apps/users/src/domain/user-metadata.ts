@@ -2,9 +2,9 @@ import { UsersMetadataEntity } from '../infrastructure/domain/users-metadata.ent
 
 export interface IUserMetadataSchema {
   id: number;
-  bio: string;
-  image: string;
-  birthday?: Date;
+  bio?: string | null;
+  image?: string | null;
+  birthday?: Date | null;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -13,17 +13,17 @@ export class UserMetadata {
   private _entityRoot: IUserMetadataSchema;
 
   constructor({
-    bio,
-    image,
-    birthday,
+    bio = null,
+    image = null,
+    birthday = null,
     created_at = new Date(),
     updated_at = new Date(),
     id = null,
   }: {
     id?: number;
-    bio: string;
-    image: string;
-    birthday?: Date;
+    bio?: string | null;
+    image?: string | null;
+    birthday?: Date | null;
     created_at?: Date;
     updated_at?: Date;
   }) {
