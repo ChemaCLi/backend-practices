@@ -28,6 +28,8 @@ export class Paginated<T> {
     this.paginationInfo = {
       ...pagination,
       totalPages,
+      page: Number(pagination.page),
+      pageSize: Number(pagination.pageSize),
       previousPage: pagination.page > 1,
       nextPage: pagination.page < totalPages,
     };
