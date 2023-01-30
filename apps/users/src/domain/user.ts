@@ -1,5 +1,6 @@
 import { UserEntity } from '../infrastructure/domain/user.entity';
 import { IUserMetadataSchema } from './user-metadata';
+import { IAssetSigner } from './contracts/asset-signer';
 
 export interface IUserSchema {
   id: number;
@@ -51,5 +52,19 @@ export class User {
 
   public entityRoot(): IUserSchema {
     return this._entityRoot;
+  }
+
+  public async preSignImageUrl(assetSigner: IAssetSigner): Promise<void> {
+    try {
+      if (this._entityRoot?.userMetadata?.image) {
+        this._entityRoot.userMetadata.image = await assetSigner.signAssetUrl(
+          this._entityRoot.userMetadata.image,
+          1800,
+        );
+      }
+    } catch (error) {
+      // eslint-disable-next-line
+      console.error(error);
+    }
   }
 }
