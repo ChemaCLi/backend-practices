@@ -20,19 +20,17 @@ export class UserRepository implements IUserRepository {
   }
 
   async persist(entity: User): Promise<void> {
-    const userProperties = entity.entityRoot()
+    const userProperties = entity.entityRoot();
 
-    const user = new UserEntity()
-    Object.assign(user, userProperties)
+    const user = new UserEntity();
+    Object.assign(user, userProperties);
 
-    const metadata = this
-      .userMetadataRepository
-      .create({
-        ...userProperties.userMetadata || {}
-      })
+    const metadata = this.userMetadataRepository.create({
+      ...(userProperties.userMetadata || {}),
+    });
 
-    metadata.bio = userProperties.userMetadata.bio
-    user.userMetadata = metadata
+    metadata.bio = userProperties.userMetadata.bio;
+    user.userMetadata = metadata;
 
     await this.userRepository.save(user);
   }

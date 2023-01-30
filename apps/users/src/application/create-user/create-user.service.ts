@@ -40,11 +40,12 @@ export const generateRandomCode = (maxLength): string => {
   const possibleChars =
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-  let code = "";
-  for (let i = 0; i < maxLength; i++) {
-    code += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+  let code = '';
+  for (let iteration = 0; iteration < maxLength; iteration += 1) {
+    code += possibleChars.charAt(
+      Math.floor(Math.random() * possibleChars.length),
+    );
   }
 
   return code;
-}
-
+};
