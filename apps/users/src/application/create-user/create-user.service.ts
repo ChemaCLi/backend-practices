@@ -36,7 +36,7 @@ export class CreateUserService
   }
 }
 
-export const generateRandomCode = (maxLength): string => {
+export const generateRandomCode = (maxLength: number): string => {
   const possibleChars =
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
