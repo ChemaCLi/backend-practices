@@ -5,7 +5,7 @@ import { UserEntity } from '../../apps/users/src/infrastructure/domain/user.enti
 export default class UserSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
-    factoryManager: SeederFactoryManager
+    factoryManager: SeederFactoryManager,
   ): Promise<any> {
     const userFactory = await factoryManager.get(UserEntity);
     await userFactory.saveMany(10_000);

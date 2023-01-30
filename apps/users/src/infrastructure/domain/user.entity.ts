@@ -29,7 +29,7 @@ export class UserEntity extends BaseEntity implements IUserSchema {
     type: 'varchar',
     length: 6,
     unique: true,
-    nullable: true
+    nullable: true,
   })
   code: string;
   @OneToOne(() => UsersMetadataEntity, (userMetadata) => userMetadata.user, {

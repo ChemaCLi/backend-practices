@@ -1,10 +1,19 @@
 import { BaseEntity } from '@app/commons/infrastructure/domain/base.entity';
-import {Column, Entity, OneToOne, PrimaryGeneratedColumn, JoinColumn} from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  JoinColumn,
+} from 'typeorm';
 import { IUserMetadataSchema } from '../../domain/user-metadata';
 import { UserEntity } from './user.entity';
 
 @Entity({ name: 'users_metadata' })
-export class UsersMetadataEntity extends BaseEntity implements IUserMetadataSchema {
+export class UsersMetadataEntity
+  extends BaseEntity
+  implements IUserMetadataSchema
+{
   @PrimaryGeneratedColumn('increment', { unsigned: true })
   public id: number;
 
@@ -31,13 +40,10 @@ export class UsersMetadataEntity extends BaseEntity implements IUserMetadataSche
   })
   birthday: Date;
 
-  @OneToOne(
-    () => UserEntity,
-    (user) => user.userMetadata
-  )
+  @OneToOne(() => UserEntity, (user) => user.userMetadata)
   @JoinColumn({
     name: 'user_id',
     referencedColumnName: 'id',
   })
-  user: UserEntity
+  user: UserEntity;
 }

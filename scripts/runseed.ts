@@ -1,7 +1,7 @@
 import { runSeeders } from 'typeorm-extension';
 import { dataSource } from './data-source';
 
-(async () => {
+(async (): Promise<void> => {
   await dataSource.initialize();
 
   await runSeeders(dataSource);

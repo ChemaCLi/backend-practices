@@ -7,4 +7,4 @@ export default setSeederFactory(UserEntity, (faker) => {
   user.email = faker.internet.email(user.name);
 
   return user;
-})
+});

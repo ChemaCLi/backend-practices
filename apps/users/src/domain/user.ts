@@ -6,7 +6,7 @@ export interface IUserSchema {
   name: string;
   email: string;
   code?: string | null;
-  userMetadata?: Partial<IUserMetadataSchema>
+  userMetadata?: Partial<IUserMetadataSchema>;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -21,7 +21,7 @@ export class User {
     created_at = new Date(),
     updated_at = new Date(),
     id = null,
-    userMetadata
+    userMetadata,
   }: {
     name: string;
     email: string;
