@@ -31,8 +31,8 @@ export class CreateUserService
       },
     });
 
-    await this.userRepository.persist(user);
-    return user.entityRoot();
+    const newUser = await this.userRepository.persist(user);
+    return newUser.entityRoot();
   }
 }
 

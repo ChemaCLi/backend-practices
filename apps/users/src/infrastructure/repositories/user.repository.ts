@@ -19,7 +19,7 @@ export class UserRepository implements IUserRepository {
     return this.userRepository.createQueryBuilder('user');
   }
 
-  async persist(entity: User): Promise<void> {
+  async persist(entity: User): Promise<User> {
     const userProperties = entity.entityRoot();
 
     const user = new UserEntity();
@@ -32,7 +32,8 @@ export class UserRepository implements IUserRepository {
     metadata.bio = userProperties.userMetadata.bio;
     user.userMetadata = metadata;
 
-    await this.userRepository.save(user);
+    const newUserData = await this.userRepository.save(user);
+    return new User(newUserData)
   }
 
   async list({
