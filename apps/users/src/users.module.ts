@@ -3,7 +3,10 @@ import { ConfigModule } from '@app/config/config.module';
 import { options } from '@app/config/options/config.options';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { USER_REPOSITORY } from './application/constants/injection-tokens';
+import {
+  ASSET_SIGNER,
+  USER_REPOSITORY,
+} from './application/constants/injection-tokens';
 import { CreateUserService } from './application/create-user/create-user.service';
 import { DeleteUserService } from './application/delete-user/delete-user.service';
 import { GetUserService } from './application/get-user/get-user.service';
@@ -14,6 +17,7 @@ import { UserEntity } from './infrastructure/domain/user.entity';
 import { UserRepository } from './infrastructure/repositories/user.repository';
 import { UsersMetadataEntity } from './infrastructure/domain/users-metadata.entity';
 import { CountUsersService } from './application/list-users/count-users.service';
+import { AwsS3AssetSigner } from './infrastructure/aws-s3-asset-signer';
 
 @Module({
   imports: [
@@ -32,7 +36,11 @@ import { CountUsersService } from './application/list-users/count-users.service'
       provide: USER_REPOSITORY,
       useClass: UserRepository,
     },
+    {
+      provide: ASSET_SIGNER,
+      useClass: AwsS3AssetSigner,
+    },
   ],
-  exports: [USER_REPOSITORY],
+  exports: [USER_REPOSITORY, ASSET_SIGNER],
 })
 export class UsersModule {}
