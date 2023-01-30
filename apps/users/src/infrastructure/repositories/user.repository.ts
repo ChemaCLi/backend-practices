@@ -37,8 +37,18 @@ export class UserRepository implements IUserRepository {
     await this.userRepository.save(user);
   }
 
-  async list(): Promise<User[]> {
-    const result = await this.createBuilder().getMany();
+  async list({
+    page,
+    pageSize,
+  }: {
+    page: number;
+    pageSize: number;
+  }): Promise<User[]> {
+    const result = await this.createBuilder()
+      .skip((page - 1) * pageSize)
+      .take(pageSize)
+      .leftJoinAndSelect('user.userMetadata', 'users_metadata')
+      .getMany();
 
     return result.map((user) => new User(user));
   }
