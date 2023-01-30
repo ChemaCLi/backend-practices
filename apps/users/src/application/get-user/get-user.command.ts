@@ -1,8 +1,8 @@
 import { Command } from '@app/commons/application/contracts/command';
-import { IsObject } from 'class-validator';
+import { IsNumberString } from 'class-validator';
 
 export class GetUserCommand implements Command {
-  @IsObject()
+  @IsNumberString()
   id: number;
 
   constructor(props: Partial<GetUserCommand>) {
