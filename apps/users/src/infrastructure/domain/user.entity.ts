@@ -35,7 +35,8 @@ export class UserEntity extends BaseEntity implements IUserSchema {
 
   @OneToOne(
     () => UsersMetadataEntity,
-    (userMetadata) => userMetadata.user
+    (userMetadata) => userMetadata.user,
+    { eager: true }
   )
   userMetadata: UsersMetadataEntity
 }
