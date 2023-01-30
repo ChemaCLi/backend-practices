@@ -21,6 +21,11 @@ functions:
       DATABASE_USERNAME: ${env:DATABASE_USERNAME}
       DATABASE_PASSWORD: ${env:DATABASE_PASSWORD}
       DATABASE_SSL: ${env:DATABASE_SSL}
+      AWS_REGION: ${env:AWS_REGION}
+      AWS_ACCESS_KEY_ID: ${env:AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${env:AWS_SECRET_ACCESS_KEY}
+      AWS_S3_BUCKET_NAME: ${env:AWS_S3_BUCKET_NAME}
+      AWS_ENDPOINT: ${env:AWS_ENDPOINT}
     timeout: 60
     memorySize: 1024
     handler: dist/apps/users/main.handler
