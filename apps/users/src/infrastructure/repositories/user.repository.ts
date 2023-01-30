@@ -4,12 +4,15 @@ import { Repository, SelectQueryBuilder } from 'typeorm';
 import { IUserRepository } from '../../domain/contracts/user.repository';
 import { User } from '../../domain/user';
 import { UserEntity } from '../domain/user.entity';
+import { UsersMetadataEntity } from '../domain/users-metadata.entity';
 
 @Injectable()
 export class UserRepository implements IUserRepository {
   constructor(
     @InjectRepository(UserEntity)
     protected readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(UsersMetadataEntity)
+    protected readonly userMetadataRepository: Repository<UsersMetadataEntity>,
   ) {}
 
   private createBuilder(): SelectQueryBuilder<UserEntity> {
@@ -17,15 +20,23 @@ export class UserRepository implements IUserRepository {
   }
 
   async persist(entity: User): Promise<void> {
-    await this.userRepository.save(entity.entityRoot());
+    const userProperties = entity.entityRoot()
+
+    const user = new UserEntity()
+    Object.assign(user, userProperties)
+
+    const metadata = this.userMetadataRepository.create({ bio: userProperties.userMetadata.bio })
+
+    metadata.bio = userProperties.userMetadata.bio
+    user.userMetadata = metadata
+
+    await this.userRepository.save(user);
   }
 
   async list(): Promise<User[]> {
     const result = await this.createBuilder().getMany();
 
-    const users = result.map((user) => new User(user));
-
-    return users;
+    return result.map((user) => new User(user));
   }
 
   async getById(id: number): Promise<User> {
