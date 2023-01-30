@@ -10,8 +10,8 @@ import {
 
 export class CreateUserCommand implements Command {
   @IsString()
-  @MaxLength(255)
   @MinLength(2)
+  @MaxLength(150)
   name: string;
 
   @IsEmail()
