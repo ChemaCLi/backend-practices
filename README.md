@@ -40,6 +40,27 @@ docker compose up -d
 
 And access to  [http://localhost:4567](http://localhost:4567)
 
+### 4. Run migrations
+You have to run the migrations to create the database tables regard the
+project entities defined in the Infrastructure layer
+```sh
+ npm run typeorm:run-migration
+```
+
+### 5. Seed the database
+In order to generate mock data to play with, you can use this command
+to insert 10,000 random records in the User entity for example:
+```sh
+npm run run-seed UserSeeder
+```
+
+### 6. Finally, build the apps and expose them
+```bash
+$ npm run build -- users
+$ npm run build -- nest-aws-lambda-serverless-monorepo
+$ npx serverless offline
+```
+
 ## Usage
 
 You can preview in real time your changes, you need run
