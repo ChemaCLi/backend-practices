@@ -13,6 +13,7 @@ import { UsersController } from './infrastructure/controllers/users.controller';
 import { UserEntity } from './infrastructure/domain/user.entity';
 import { UserRepository } from './infrastructure/repositories/user.repository';
 import { UsersMetadataEntity } from './infrastructure/domain/users-metadata.entity';
+import { CountUsersService } from './application/list-users/count-users.service';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UsersMetadataEntity } from './infrastructure/domain/users-metadata.enti
   providers: [
     CreateUserService,
     ListUsersService,
+    CountUsersService,
     GetUserService,
     DeleteUserService,
     {
