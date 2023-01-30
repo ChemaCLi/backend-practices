@@ -25,7 +25,11 @@ export class UserRepository implements IUserRepository {
     const user = new UserEntity()
     Object.assign(user, userProperties)
 
-    const metadata = this.userMetadataRepository.create({ bio: userProperties.userMetadata.bio })
+    const metadata = this
+      .userMetadataRepository
+      .create({
+        ...userProperties.userMetadata || {}
+      })
 
     metadata.bio = userProperties.userMetadata.bio
     user.userMetadata = metadata
