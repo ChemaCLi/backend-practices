@@ -14,7 +14,7 @@ import { ListUsersService } from './application/list-users/list-users.service';
 import { UserController } from './infrastructure/controllers/user.controller';
 import { UsersController } from './infrastructure/controllers/users.controller';
 import { UserEntity } from './infrastructure/domain/user.entity';
-import { UserRepository } from './infrastructure/repositories/user.repository';
+import { TypeORMUserRepository } from './infrastructure/repositories/typeorm-user.repository';
 import { UsersMetadataEntity } from './infrastructure/domain/users-metadata.entity';
 import { CountUsersService } from './application/list-users/count-users.service';
 import { AwsS3AssetSigner } from './infrastructure/aws-s3-asset-signer';
@@ -34,7 +34,7 @@ import { AwsS3AssetSigner } from './infrastructure/aws-s3-asset-signer';
     DeleteUserService,
     {
       provide: USER_REPOSITORY,
-      useClass: UserRepository,
+      useClass: TypeORMUserRepository,
     },
     {
       provide: ASSET_SIGNER,

@@ -7,7 +7,7 @@ import { UserEntity } from '../domain/user.entity';
 import { UsersMetadataEntity } from '../domain/users-metadata.entity';
 
 @Injectable()
-export class UserRepository implements IUserRepository {
+export class TypeORMUserRepository implements IUserRepository {
   constructor(
     @InjectRepository(UserEntity)
     protected readonly userRepository: Repository<UserEntity>,
