@@ -7,10 +7,10 @@ import { USER_REPOSITORY } from '../constants/injection-tokens';
 @Injectable()
 export class ListUsersService implements IApplicationService {
   constructor(
-    @Inject(USER_REPOSITORY) private userRespository: UserRepository,
+    @Inject(USER_REPOSITORY) private userRepository: UserRepository,
   ) {}
 
   async process(): Promise<IUserSchema[]> {
-    return (await this.userRespository.list()).map((user) => user.entityRoot());
+    return (await this.userRepository.list()).map((user) => user.entityRoot());
   }
 }

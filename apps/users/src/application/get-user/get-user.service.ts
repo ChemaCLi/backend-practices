@@ -8,11 +8,11 @@ import { GetUserCommand } from './get-user.command';
 @Injectable()
 export class GetUserService implements IApplicationService<GetUserCommand> {
   constructor(
-    @Inject(USER_REPOSITORY) private userRespository: UserRepository,
+    @Inject(USER_REPOSITORY) private userRepository: UserRepository,
   ) {}
 
   async process(command: GetUserCommand): Promise<IUserSchema> {
-    const user = await this.userRespository.getById(command.id);
+    const user = await this.userRepository.getById(command.id);
 
     return user.entityRoot();
   }
