@@ -11,6 +11,7 @@
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
+    "start:serverless": "npm run start && npx serverless offline",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/nest-aws-lambda-serverless-monorepo/main",
     "lint": "npm run ts:check &&  eslint .",
