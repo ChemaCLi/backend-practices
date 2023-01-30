@@ -1,5 +1,6 @@
 import { Command } from '@app/commons/application/contracts/command';
 import {
+  IsDateString,
   IsEmail,
   IsNotEmpty,
   IsOptional,
@@ -22,6 +23,15 @@ export class CreateUserCommand implements Command {
   @IsOptional()
   @MaxLength(1200)
   bio: string;
+
+  @IsString()
+  @IsOptional()
+  @MaxLength(1200)
+  image: string;
+
+  @IsDateString()
+  @IsOptional()
+  birthday: Date;
 
   constructor(props: Partial<CreateUserCommand>) {
     Object.assign(this, props);
